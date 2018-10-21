@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.archana.pJAssignment.activity.MainActivity">
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+              android:textSize="@dimen/text_size"
+              android:textColor="@color/colorBlack"
+              android:visibility="gone"
+              android:gravity="center"
+              android:text="PLEASE TYPE SEARCH KEY"
+              android:id="@+id/please_search"/>
+
+
+</RelativeLayout>
