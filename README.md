@@ -1,0 +1,2 @@
+# PJAssignment
+I have used Retrofit for API request &amp; throwing exception with search result is empty. I have used recyclerView to display data as per JSON Architecture : Model view Controller  Adding a new feature is by adding search icon and refreshing recyclerview, it would take less time to add this feature to code once everything is ready as a module. It displays: searched result heading description of each result &amp; image if exists else it loads dummy image
