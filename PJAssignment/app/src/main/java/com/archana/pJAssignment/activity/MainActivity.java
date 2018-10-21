@@ -21,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        textView.setVisibility(View.GONE);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<SearchResponse> call = apiService.getSearchedItems(SEARCH_KEY);
@@ -56,8 +56,18 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                 List<SearchType> searchTypes = response.body().getResults();
                 Log.d(TAG, "SearchType" + searchTypes);
-                SearchAdapter searchAdapter = new SearchAdapter(searchTypes, R.layout.list_item_search, getApplicationContext());
-                recyclerView.setAdapter(searchAdapter);
+                try {
+                    if (searchTypes.size() != 0) {
+                        textView.setVisibility(View.GONE);
+                        SearchAdapter searchAdapter = new SearchAdapter(searchTypes, R.layout.list_item_search, getApplicationContext());
+                        recyclerView.setAdapter(searchAdapter);
+                    } else {
+                        textView.setVisibility(View.VISIBLE);
+                    }
+                }catch (NullPointerException e){
+                    textView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }
             }
 
             @Override
